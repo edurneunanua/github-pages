@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio de Sesión</title>
+  <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js"></script>
+</head>
+<body>
+  <h1>Inicio de Sesión</h1>
+  <div>
+    <input type="email" id="email" placeholder="Correo electrónico" required />
+    <input type="password" id="password" placeholder="Contraseña" required />
+    <button id="login-button">Iniciar Sesión</button>
+    <p id="error-message" style="color: red;"></p>
+  </div>
+
+  <script>
+    // Configuración de Firebase (reemplaza con las credenciales de tu proyecto)
+    const firebaseConfig = {
+  apiKey: "AIzaSyAAIAvyhP7-hHWoTuxnytwaE8WSqSn4GOU",
+     authDomain: "albia-repo-pass.firebaseapp.com",
+     projectId: "albia-repo-pass",
+     storageBucket: "albia-repo-pass.firebasestorage.app",
+     messagingSenderId: "721066271868",
+     appId: "1:721066271868:web:89be14c52fa2dfa8c615f9"
+};
+
+    // Inicializar Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Manejo del inicio de sesión
+    document.getElementById('login-button').addEventListener('click', () => {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Inicio de sesión exitoso
+          window.location.href = “https://sites.google.com/view/albiarepo/docs-restringidos; // Redirige a tu página restringida
+        })
+        .catch((error) => {
+          // Manejo de errores
+          document.getElementById('error-message').textContent = "Credenciales incorrectas. Por favor, inténtalo de nuevo.";
+        });
+    });
+  </script>
+</body>
+</html>
